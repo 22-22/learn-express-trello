@@ -20,7 +20,8 @@ class BoardController {
   }
   create(req, res) {
     try {
-      const newBoard = BoardService.create(req.body);
+      const { userId } = req.query;
+      const newBoard = BoardService.create(req.body, userId);
       res.json(newBoard);
     } catch (err) {
       res.status(500).json(err.message);
@@ -28,8 +29,9 @@ class BoardController {
   }
   update(req, res) {
     try {
+      const { userId } = req.query;
       const { id } = req.params;
-      const updatedBoard = BoardService.update(id, req.body);
+      const updatedBoard = BoardService.update(id, req.body, userId);
       res.json({
         message: `The board #${id} has been updated`,
         content: updatedBoard,
@@ -40,8 +42,9 @@ class BoardController {
   }
   delete(req, res) {
     try {
+      const { userId } = req.query;
       const { id } = req.params;
-      const deletedBoard = BoardService.delete(id);
+      const deletedBoard = BoardService.delete(id, userId);
       res.json({
         message: `The board #${id} has been deleted`,
         content: deletedBoard,

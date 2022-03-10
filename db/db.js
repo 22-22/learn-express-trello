@@ -4,6 +4,18 @@ import Card from "../resources/cards/cards.model.js";
 const DB = {
   boards: [],
   cards: [],
+  users: [
+    {
+      name: "Lynn Tomm",
+      userId: "111",
+      isAdmin: true,
+    },
+    {
+      name: "Jot Lu",
+      userId: "222",
+      isAdmin: false,
+    },
+  ],
 };
 
 const start = () => {

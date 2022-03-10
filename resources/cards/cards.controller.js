@@ -21,8 +21,9 @@ class CardController {
   }
   create(req, res) {
     try {
+      const { userId } = req.query;
       const { boardId } = req.params;
-      const newCard = CardService.create(boardId, req.body);
+      const newCard = CardService.create(boardId, req.body, userId);
       res.json(newCard);
     } catch (err) {
       res.status(500).json(err.message);
@@ -30,8 +31,9 @@ class CardController {
   }
   update(req, res) {
     try {
+      const { userId } = req.query;
       const { id } = req.params;
-      const updatedCard = CardService.update(id, req.body);
+      const updatedCard = CardService.update(id, req.body, userId);
       res.json(updatedCard);
     } catch (err) {
       res.status(500).json(err.message);
@@ -39,8 +41,9 @@ class CardController {
   }
   delete(req, res) {
     try {
+      const { userId } = req.query;
       const { id } = req.params;
-      const deletedCard = CardService.delete(id);
+      const deletedCard = CardService.delete(id, userId);
       res.json(deletedCard);
     } catch (err) {
       res.status(500).json(err.message);
