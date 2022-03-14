@@ -2,7 +2,7 @@
   "name": "learn-express-trello",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
     "start": "node app.js",
@@ -21,10 +21,12 @@
   },
   "homepage": "https://github.com/22-22/learn-express-trello#readme",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "helmet": "^5.0.2",
     "joi": "^17.6.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "winston": "^3.6.0"
   },
   "devDependencies": {
     "eslint": "^8.10.0",

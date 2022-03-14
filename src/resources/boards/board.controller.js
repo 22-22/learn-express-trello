@@ -1,56 +1,56 @@
 import BoardService from "./board.service.js";
 
 class BoardController {
-  getAll(req, res) {
+  getAll(req, res, next) {
     try {
       const boards = BoardService.getAll();
       res.json(boards);
     } catch (err) {
-      res.status(500).json(err.message);
+      next(err);
     }
   }
-  getOne(req, res) {
+  getOne(req, res, next) {
     try {
       const { id } = req.params;
       const board = BoardService.getOne(id);
       res.json(board);
     } catch (err) {
-      res.status(500).json(err.message);
+      next(err);
     }
   }
-  create(req, res) {
+  create(req, res, next) {
     try {
-      const { userId } = req.query;
-      const newBoard = BoardService.create(req.body, userId);
-      res.json(newBoard);
+      const newBoard = BoardService.create(req.body);
+      res.json({
+        message: "The board has been created",
+        content: newBoard,
+      });
     } catch (err) {
-      res.status(500).json(err.message);
+      next(err);
     }
   }
-  update(req, res) {
+  update(req, res, next) {
     try {
-      const { userId } = req.query;
       const { id } = req.params;
-      const updatedBoard = BoardService.update(id, req.body, userId);
+      const updatedBoard = BoardService.update(id, req.body);
       res.json({
         message: `The board #${id} has been updated`,
         content: updatedBoard,
       });
     } catch (err) {
-      res.status(500).json(err.message);
+      next(err);
     }
   }
-  delete(req, res) {
+  delete(req, res, next) {
     try {
-      const { userId } = req.query;
       const { id } = req.params;
-      const deletedBoard = BoardService.delete(id, userId);
+      const deletedBoard = BoardService.delete(id);
       res.json({
         message: `The board #${id} has been deleted`,
         content: deletedBoard,
       });
     } catch (err) {
-      res.status(500).json(err.message);
+      next(err);
     }
   }
 }
