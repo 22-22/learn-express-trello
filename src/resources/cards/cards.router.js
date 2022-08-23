@@ -8,6 +8,7 @@ router.get("/", CardsController.getAll);
 
 router.get("/:id", CardsController.getOne);
 
+// router.post("/", checkRole, CardsController.create);
 router.post("/", checkRole);
 router.post("/", CardsController.create);
 
